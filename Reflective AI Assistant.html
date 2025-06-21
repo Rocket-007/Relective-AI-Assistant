@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chatbase Test Bot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Chatbase Test Site</h1>
+  <p>This bot is here to help students self-discover and grow.</p>
+
+  <!-- Chatbase Embed Script -->
+  <script>
+    (function () {
+      if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+        window.chatbase = (...args) => {
+          if (!window.chatbase.q) { window.chatbase.q = [] }
+          window.chatbase.q.push(args)
+        };
+        window.chatbase = new Proxy(window.chatbase, {
+          get(target, prop) {
+            if (prop === "q") return target.q;
+            return (...args) => target(prop, ...args);
+          }
+        });
+      }
+
+      const onLoad = function () {
+        const script = document.createElement("script");
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "CpwjF36zymg_b-vt2PzCB"; // Replace with your bot's actual ID
+        script.domain = "www.chatbase.co";
+        document.body.appendChild(script);
+      };
+
+      if (document.readyState === "complete") {
+        onLoad();
+      } else {
+        window.addEventListener("load", onLoad);
+      }
+    })();
+  </script>
+
+</body>
+</html>
